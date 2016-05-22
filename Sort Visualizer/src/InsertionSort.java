@@ -8,6 +8,12 @@ public class InsertionSort extends Sort {
 	}
 	
 	@Override
+	public void setList(int[] l) {
+		super.setList(l);
+		index = 1;
+	}
+	
+	@Override
 	public void step() {
 		if (!sorted) {
 			int i = index;

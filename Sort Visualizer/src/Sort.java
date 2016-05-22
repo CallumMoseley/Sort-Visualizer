@@ -11,6 +11,13 @@ public abstract class Sort {
 		sorted = false;
 	}
 	
+	public void setList(int[] l) {
+		list = l;
+		comparisons = 0;
+		swaps = 0;
+		sorted = false;
+	}
+	
 	public int[] getList() {
 		return list;
 	}

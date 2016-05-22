@@ -72,8 +72,7 @@ public class SortVisualizer extends JFrame {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			if (!sort.isSorted()) sort.step();
-			repaint(0);
+			sort.setList(randList(1000, 0, 1000000));
 		}
 		
 		@Override

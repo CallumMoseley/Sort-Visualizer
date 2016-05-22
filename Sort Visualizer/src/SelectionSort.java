@@ -5,6 +5,12 @@ public class SelectionSort extends Sort {
 	public SelectionSort(int[] l) {
 		super(l);
 	}
+	
+	@Override
+	public void setList(int[] l) {
+		super.setList(l);
+		index = 0;
+	}
 
 	@Override
 	public void step() {
