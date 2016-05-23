@@ -14,7 +14,7 @@ public class Bogosort extends Sort {
 			
 			sorted = true;
 			for (int i = 1; i < list.length; i++) {
-				if (list[i] < list[i - 1]) {
+				if (compare(list[i], list[i - 1]) < 0) {
 					sorted = false;
 					break;
 				}

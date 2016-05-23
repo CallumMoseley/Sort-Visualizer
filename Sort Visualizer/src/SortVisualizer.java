@@ -11,7 +11,7 @@ public class SortVisualizer extends JFrame {
 	
 	public SortVisualizer() {
 		super("Sort Visualizer");
-		SortPanel dp = new SortPanel(new SelectionSort(randList(1000, 0, 1000000)));
+		SortPanel dp = new SortPanel(new MergeSort(randList(1000, 0, 1000000)));
 		setResizable(true);
 		setContentPane(dp);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,6 +59,7 @@ public class SortVisualizer extends JFrame {
 			g.fillRect(0, 0, getWidth(), getHeight());
 			
 			g.setColor(Color.WHITE);
+			if (sort.isSorted()) g.setColor(Color.GREEN);
 			for (int i = 0; i < getWidth(); i++) {
 				int value = sort.getList()[(int) (((double) i / getWidth()) * sort.getList().length)];
 				int height = (int) (((double) value / max) * getHeight());
@@ -67,12 +68,28 @@ public class SortVisualizer extends JFrame {
 			}
 			
 			g.drawString("Comparisons: " + sort.getComparisons(), 5, 20);
-			g.drawString("Swaps: " + sort.getSwaps(), 5, 32);
+			g.drawString(((sort instanceof MergeSort) ? "Merges: " : "Swaps: ") + sort.getSwaps(), 5, 32);
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
 			sort.setList(randList(1000, 0, 1000000));
+			
+			// lol this is totally wrong but it's really funny to see multiple threads fighting to sort the list
+			(new Thread() {
+				@Override
+				public void run() {
+					while (!sort.sorted) {
+						sort.step();
+						repaint(0);
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}).start();
 		}
 		
 		@Override

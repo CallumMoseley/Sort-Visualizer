@@ -18,7 +18,7 @@ public class InsertionSort extends Sort {
 		if (!sorted) {
 			int i = index;
 			
-			while (i > 0 && compare(i, i - 1) < 0) {
+			while (i > 0 && compare(list[i], list[i - 1]) < 0) {
 				swap(i, i - 1);
 				i--;
 			}

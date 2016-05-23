@@ -17,7 +17,7 @@ public class SelectionSort extends Sort {
 		if (!sorted) {
 			int min = index;
 			for (int i = index + 1; i < list.length; i++) {
-				if (compare(i, min) < 0) {
+				if (compare(list[i], list[min]) < 0) {
 					min = i;
 				}
 			}

@@ -36,7 +36,7 @@ public abstract class Sort {
 	
 	protected int compare(int a, int b) {
 		comparisons++;
-		return ((Integer) list[a]).compareTo(list[b]);
+		return ((Integer) a).compareTo(b);
 	}
 	
 	protected void swap(int a, int b) {
